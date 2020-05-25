@@ -1,0 +1,14 @@
+{
+    "id": "skin-api",
+    "name": "SkinApi",
+    "description": "Plugin for Azuriom",
+    "version": "1.0.0",
+    "url": "https://azuriom.com",
+    "authors": [
+        "Azuriom"
+    ],
+    "providers": [
+        "\\Azuriom\\Plugin\\SkinApi\\Providers\\SkinApiServiceProvider",
+        "\\Azuriom\\Plugin\\SkinApi\\Providers\\RouteServiceProvider"
+    ]
+}

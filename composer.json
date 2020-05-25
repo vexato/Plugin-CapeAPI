@@ -1,0 +1,13 @@
+{
+    "name": "azuriom/skin-api",
+    "type": "azuriom-plugin",
+    "description": "Plugin for Azuriom",
+    "autoload": {
+        "psr-4": {
+            "Azuriom\\Plugin\\SkinApi\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
