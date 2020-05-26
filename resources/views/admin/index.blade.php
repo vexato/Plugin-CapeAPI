@@ -5,7 +5,7 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-body">
-            <p>Don't worry many more functions will be added to the plugin. Such a permisions...</p>
+            <p>Don't worry many more functions will be added to the plugin. Such as permisions...</p>
             <p>
                 API : <br>
                 <code>GET {{ url('/api/skins/{user_id}') }}</code><br>
