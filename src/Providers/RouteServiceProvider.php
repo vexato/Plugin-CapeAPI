@@ -46,4 +46,20 @@ class RouteServiceProvider extends BaseRouteServiceProvider
             ->name($this->pluginName.'.admin.')
             ->group(plugin_path($this->pluginName.'/routes/admin.php'));
     }
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapApiRoutes()
+    {
+        Route::prefix('api')
+            ->middleware('api')
+            ->namespace($this->namespace.'\Api')
+            ->name($this->pluginName.'.api.')
+            ->group(plugin_path($this->pluginName.'/routes/api.php'));
+    }
 }

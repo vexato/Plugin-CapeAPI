@@ -5,7 +5,16 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-body">
-            <p>This is the admin page of your plugin</p>
+            <p>Don't worry many more functions will be added to the plugin. Such a permisions...</p>
+            <p>
+                API : <br>
+                <code>GET {{ url('/api/skins/{user_id}') }}</code><br>
+                <code>POST {{ url('/api/skins/update_skin') }}</code><br>
+                The POST route require 2 parameters : <br> 
+                <code>{ "access_token" : "XXXX", "skin" : "IMAGE.PNG" }</code><br>
+
+                The user, if connected, can update his skin if he navigates to <code>{{ route('skin-api.home') }}</code>
+            </p>
         </div>
     </div>
 @endsection

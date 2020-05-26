@@ -84,7 +84,7 @@ class skinApiServiceProvider extends BasePluginServiceProvider
     protected function routeDescriptions()
     {
         return [
-            //
+           'skin-api.home' => 'My skin',
         ];
     }
 
@@ -96,7 +96,16 @@ class skinApiServiceProvider extends BasePluginServiceProvider
     protected function adminNavigation()
     {
         return [
-            //
+            'skin-api' => [
+                'name' => 'Skin-Api',
+                'type' => 'dropdown',
+                'icon' => 'fas fa-chart-bar',
+                'route' => 'skin-api.admin.*',
+                'items' => [
+                    'skin-api.admin.home' => 'Settings',
+                    // 'marketing.admin.waiting-list' => 'marketing::admin.nav.waiting-list',
+                ],
+            ],
         ];
     }
 
