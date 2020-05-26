@@ -4,7 +4,7 @@ namespace Azuriom\Plugin\SkinApi\Providers;
 
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 
-class skinApiServiceProvider extends BasePluginServiceProvider
+class SkinApiServiceProvider extends BasePluginServiceProvider
 {
     /**
      * The plugin's global HTTP middleware stack.
