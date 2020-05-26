@@ -10,5 +10,6 @@
     "providers": [
         "\\Azuriom\\Plugin\\SkinApi\\Providers\\SkinApiServiceProvider",
         "\\Azuriom\\Plugin\\SkinApi\\Providers\\RouteServiceProvider"
-    ]
+    ],
+    "apiId" : 18
 }
