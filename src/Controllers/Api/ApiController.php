@@ -18,9 +18,13 @@ class ApiController extends Controller
     {
         if(Storage::disk('public')->exists("skins/{$user_id}.png"))
         {
-            return Storage::disk('public')->download("skins/{$user_id}.png", 'skin.png');
+            return Storage::disk('public')->response("skins/{$user_id}.png", 'skin.png', [
+                'Content-Type' => 'image/png'
+            ]);
         } else {
-            return response()->download(base_path().'/plugins/skin-api/assets/img/steve.png', 'skin.png');
+            return response()->file(base_path().'/plugins/skin-api/assets/img/steve.png', [
+                'Content-Type' => 'image/png'
+            ]);
         }
     }
 
