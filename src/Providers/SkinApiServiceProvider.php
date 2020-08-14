@@ -7,40 +7,6 @@ use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 class SkinApiServiceProvider extends BasePluginServiceProvider
 {
     /**
-     * The plugin's global HTTP middleware stack.
-     *
-     * @var array
-     */
-    protected $middleware = [
-        // \Azuriom\Plugin\SkinApi\Middleware\ExampleMiddleware::class,
-    ];
-
-    /**
-     * The plugin's route middleware groups.
-     *
-     * @var array
-     */
-    protected $middlewareGroups = [];
-
-    /**
-     * The plugin's route middleware.
-     *
-     * @var array
-     */
-    protected $routeMiddleware = [
-        // 'example' => \Azuriom\Plugin\SkinApi\Middleware\ExampleRouteMiddleware::class,
-    ];
-
-    /**
-     * The policy mappings for this plugin.
-     *
-     * @var array
-     */
-    protected $policies = [
-        // User::class => UserPolicy::class,
-    ];
-
-    /**
      * Register any plugin services.
      *
      * @return void
@@ -59,8 +25,6 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
      */
     public function boot()
     {
-        // $this->registerPolicies();
-
         $this->loadViews();
 
         $this->loadTranslations();
@@ -84,7 +48,7 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
     protected function routeDescriptions()
     {
         return [
-           'skin-api.home' => 'My skin',
+           'skin-api.home' => 'skin-api::messages.title',
         ];
     }
 
@@ -102,8 +66,7 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
                 'icon' => 'fas fa-chart-bar',
                 'route' => 'skin-api.admin.*',
                 'items' => [
-                    'skin-api.admin.home' => 'Settings',
-                    // 'marketing.admin.waiting-list' => 'marketing::admin.nav.waiting-list',
+                    'skin-api.admin.home' => 'admin.nav.settings.settings.settings',
                 ],
             ],
         ];

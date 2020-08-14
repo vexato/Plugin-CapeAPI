@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'skinApiHomeController@index')->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/', 'SkinApiController@index')->name('home');
 
-Route::post('/update_skin', 'skinApiHomeController@update_skin')->name('update_skin');
+    Route::post('/update', 'SkinApiController@update')->name('update');
+});

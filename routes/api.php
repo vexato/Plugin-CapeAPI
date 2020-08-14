@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('skins/{user_id}', 'ApiController@get_skin')->where('user_id', '[0-9]+')->name('get_skin');
+Route::get('skins/{user}', 'ApiController@show')->name('show');
 
-Route::post('skins/update_skin', 'ApiController@update_skin')->name('update_skin');
+Route::post('skins/update', 'ApiController@update')->name('update');
