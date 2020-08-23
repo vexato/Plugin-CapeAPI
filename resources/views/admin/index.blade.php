@@ -49,7 +49,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">
-                    {{ trans('messages.actions.save') }}
+                    <i class="fas fa-save"></i> {{ trans('messages.actions.save') }}
                 </button>
             </form>
         </div>

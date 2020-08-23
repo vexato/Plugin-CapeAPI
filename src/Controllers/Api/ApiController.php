@@ -15,16 +15,18 @@ class ApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($userId)
+    public function show($user)
     {
-        if (Storage::disk('public')->exists("skins/{$userId}.png")) {
-            return Storage::disk('public')->response("skins/{$userId}.png", 'skin.png', [
+        $userId = User::where('id', $user)->orWhere('name', $user)->value('id');
+
+        if ($userId === null || ! Storage::disk('public')->exists("skins/{$userId}.png")) {
+            return response()->file(base_path().'/plugins/skin-api/assets/img/steve.png', [
                 'Content-Type' => 'image/png',
             ]);
         }
 
-        return response()->file(base_path().'/plugins/skin-api/assets/img/steve.png', [
-            'Content-Type' => 'image/png'
+        return Storage::disk('public')->response("skins/{$userId}.png", 'skin.png', [
+            'Content-Type' => 'image/png',
         ]);
     }
 

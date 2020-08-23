@@ -63,7 +63,7 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
             'skin-api' => [
                 'name' => 'Skin-Api',
                 'type' => 'dropdown',
-                'icon' => 'fas fa-chart-bar',
+                'icon' => 'fas fa-user-circle',
                 'route' => 'skin-api.admin.*',
                 'items' => [
                     'skin-api.admin.home' => 'admin.nav.settings.settings.settings',
