@@ -13,9 +13,7 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
      */
     public function register()
     {
-        $this->registerMiddlewares();
-
-        //
+        // $this->registerMiddlewares();
     }
 
     /**
@@ -29,15 +27,13 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
 
         $this->loadTranslations();
 
-        $this->loadMigrations();
+        // $this->loadMigrations();
 
         $this->registerRouteDescriptions();
 
         $this->registerAdminNavigation();
 
         $this->registerUserNavigation();
-
-        //
     }
 
     /**
@@ -48,7 +44,7 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
     protected function routeDescriptions()
     {
         return [
-           'skin-api.home' => 'skin-api::messages.title',
+            'skin-api.home' => 'skin-api::messages.title',
         ];
     }
 
@@ -80,7 +76,10 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
     protected function userNavigation()
     {
         return [
-            //
+            'skin' => [
+                'route' => 'skin-api.home',
+                'name' => 'skin-api::messages.title',
+            ],
         ];
     }
 }
