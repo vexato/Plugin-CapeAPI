@@ -7,16 +7,22 @@ use Azuriom\Models\User;
 use Azuriom\Plugin\SkinApi\SkinAPI;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ApiController extends Controller
 {
     /**
      * Show the home plugin page.
      *
+     * @param  string $user
      * @return \Illuminate\Http\Response
      */
-    public function show($user)
+    public function show(string $user)
     {
+        if (Str::endsWith($user, '.png')) {
+            $user = Str::beforeLast($user, '.png');
+        }
+
         $userId = User::where('id', $user)->orWhere('name', $user)->value('id');
 
         if ($userId === null || ! Storage::disk('public')->exists("skins/{$userId}.png")) {
@@ -43,7 +49,7 @@ class ApiController extends Controller
             return response()->json(['status' => false, 'message' => 'Invalid token'], 422);
         }
 
-        if ($user->is_banned) {
+        if ($user->isBanned()) {
             return response()->json(['status' => false, 'message' => 'User banned'], 422);
         }
 

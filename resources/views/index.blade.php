@@ -2,6 +2,16 @@
 
 @section('title', trans('skin-api::messages.title'))
 
+@push('styles')
+    <style>
+        #skinPreview {
+            width: 350px;
+            image-rendering: crisp-edges; /* Firefox */
+            image-rendering: pixelated; /* Chrome and Safari */
+        }
+    </style>
+@endpush
+
 @push('footer-scripts')
     <script>
         const skinInput = document.getElementById('skin');
@@ -52,7 +62,7 @@
                             @enderror
                         </div>
 
-                        <img src="{{ $skinUrl }}" alt="{{ trans('skin-api::messages.skin') }}" id="skinPreview" class="mt-3 img-fluid" style="image-rendering: pixelated; width: 350px">
+                        <img src="{{ $skinUrl }}" alt="{{ trans('skin-api::messages.skin') }}" id="skinPreview" class="mt-3 img-fluid">
                     </div>
 
                     <button type="submit" class="btn btn-primary">
