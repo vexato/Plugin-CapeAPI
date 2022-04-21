@@ -44,7 +44,7 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
     protected function routeDescriptions()
     {
         return [
-            'skin-api.home' => 'skin-api::messages.title',
+            'skin-api.home' => trans('skin-api::messages.title'),
         ];
     }
 
@@ -59,10 +59,10 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
             'skin-api' => [
                 'name' => 'Skin-Api',
                 'type' => 'dropdown',
-                'icon' => 'fas fa-user-circle',
+                'icon' => 'bi bi-images',
                 'route' => 'skin-api.admin.*',
                 'items' => [
-                    'skin-api.admin.home' => 'admin.nav.settings.settings.settings',
+                    'skin-api.admin.home' => trans('admin.nav.settings.settings'),
                 ],
             ],
         ];
@@ -78,7 +78,7 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
         return [
             'skin' => [
                 'route' => 'skin-api.home',
-                'name' => 'skin-api::messages.title',
+                'name' => trans('skin-api::messages.title'),
             ],
         ];
     }

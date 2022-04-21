@@ -2,11 +2,12 @@
     "id": "skin-api",
     "name": "SkinApi",
     "description": "Add a skin API for your Minecraft server.",
-    "version": "0.1.4",
+    "version": "1.0.0",
     "url": "https://azuriom.com",
     "authors": [
         "Javdu10"
     ],
+    "azuriom_api": "1.0.0",
     "providers": [
         "\\Azuriom\\Plugin\\SkinApi\\Providers\\SkinApiServiceProvider",
         "\\Azuriom\\Plugin\\SkinApi\\Providers\\RouteServiceProvider"
