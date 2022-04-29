@@ -46,6 +46,8 @@ class SkinAPI
      */
     public static function makeAvatarWithTypeForUser($type, $userId)
     {
+        abort_unless(extension_loaded('gd'), 403, 'Please enable the GD extension in your php.ini');
+
         $skin = imagecreatefrompng(Storage::disk('public')->path("skins/{$userId}.png"));
         $size = 64;
         $x = 46;
