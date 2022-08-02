@@ -3,6 +3,7 @@
 namespace Azuriom\Plugin\SkinApi\Providers;
 
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
+use Azuriom\Models\Permission;
 
 class SkinApiServiceProvider extends BasePluginServiceProvider
 {
@@ -28,6 +29,10 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
         $this->loadTranslations();
 
         // $this->loadMigrations();
+
+        Permission::registerPermissions([
+            'skin-api.manage' => 'skin-api::admin.permissions.manage',
+        ]);
 
         $this->registerRouteDescriptions();
 
@@ -64,6 +69,7 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
                 'items' => [
                     'skin-api.admin.home' => trans('admin.nav.settings.settings'),
                 ],
+                'permission' => 'skin-api.manage'
             ],
         ];
     }

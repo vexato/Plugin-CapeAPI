@@ -8,4 +8,8 @@ return [
         'height' => 'Height',
         'scale' => 'Max scale',
     ],
+
+    'permissions' => [
+        'manage' => 'Manage skin-api plugin',
+    ],
 ];

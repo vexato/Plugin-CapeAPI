@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'AdminController@index')->name('home');
-Route::post('/', 'AdminController@update')->name('update');
+Route::middleware('can:skin-api.manage')->group(function () {
+    Route::get('/', 'AdminController@index')->name('home');
+    Route::post('/', 'AdminController@update')->name('update');
+});
