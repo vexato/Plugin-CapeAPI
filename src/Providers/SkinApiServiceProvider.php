@@ -4,6 +4,9 @@ namespace Azuriom\Plugin\SkinApi\Providers;
 
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 use Azuriom\Models\Permission;
+use Azuriom\Models\User;
+use Azuriom\Plugin\SkinApi\SkinAPI;
+use Illuminate\Support\Facades\Storage;
 
 class SkinApiServiceProvider extends BasePluginServiceProvider
 {
@@ -14,7 +17,26 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
      */
     public function register()
     {
-        // $this->registerMiddlewares();
+        // Due to the "random" order of ServiceProvider boot
+        // we need to make sure that the GameServiceProvider has booted
+        // thus after the app is booted.
+        $this->app->booted(function ($app): void {
+            if (game()->id() === 'mc-offline') {
+                game()->setAvatarRetriever(function (User $user, int $size = 64) {
+                    if (! Storage::disk('public')->exists("skins/{$user->id}.png")) {
+                        return plugin_asset('skin-api', 'img/face_steve.png');
+                    }
+
+                    // if the avatar does not exist or the skin is more recent than the avatar
+                    if (! Storage::disk('public')->exists("face/{$user->id}.png")
+                        || Storage::disk('public')->lastModified("skins/{$user->id}.png") > Storage::disk('public')->lastModified("face/{$user->id}.png")) {
+                        SkinAPI::makeAvatarWithTypeForUser('face', $user->id);
+                    }
+
+                    return Storage::disk('public')->url("face/{$user->id}.png");
+                });
+            }
+        });
     }
 
     /**
@@ -69,7 +91,7 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
                 'items' => [
                     'skin-api.admin.home' => trans('admin.nav.settings.settings'),
                 ],
-                'permission' => 'skin-api.manage'
+                'permission' => 'skin-api.manage',
             ],
         ];
     }
