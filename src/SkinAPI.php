@@ -56,6 +56,8 @@ class SkinAPI
         // Background
         // face
         imagecopyresampled($image, $skin, 0, 0, 8, 8, $size, $size, 8, 8);
+        // Add second layer to skin
+        imagecopyresampled($image, $skin, 0, 0, 40, 8, $size, $size, 8, 8);
 
         if ($type === 'combo') {
             $head = imagecreate(10, 10);
