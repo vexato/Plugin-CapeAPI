@@ -84,6 +84,6 @@ class ApiController extends Controller
             return response()->json(['status' => false, 'message' => 'User banned'], 422);
         }
 
-        return $request->file('skin')->storeAs('skins', "{$request->user()->id}.png", 'public');
+        return $request->file('skin')->storeAs('skins', "{$user->id}.png", 'public');
     }
 }
