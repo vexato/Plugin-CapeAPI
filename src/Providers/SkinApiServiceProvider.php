@@ -33,7 +33,7 @@ class SkinApiServiceProvider extends BasePluginServiceProvider
                         SkinAPI::makeAvatarWithTypeForUser('face', $user->id);
                     }
 
-                    return Storage::disk('public')->url("face/{$user->id}.png");
+                    return url(Storage::disk('public')->url("face/{$user->id}.png"));
                 });
             }
         });
