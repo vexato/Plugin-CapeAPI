@@ -64,7 +64,6 @@ class ApiController extends Controller
             return response()->json(['status' => false, 'message' => 'User banned'], 422);
         }
 
-        // Delete existing capes
         $capePathPng = "capes/{$user->id}.png";
         $capePathGif = "capes/{$user->id}.gif";
 

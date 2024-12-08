@@ -1,11 +1,12 @@
 {
     "id": "cape-api",
     "name": "cape-api",
-    "description": "add a cape api to your website",
+    "description": "Fork of the SkinAPI plugin but i edited it to work with capes",
     "version": "1.0.0",
     "url": "https://azuriom.com",
     "authors": [
-        "Vexato"
+        "Vexato",
+        "Javdu10 (Fork)"
     ],
     "azuriom_api": "1.1.0",
     "providers": [

@@ -89,7 +89,7 @@ class CapeApiServiceProvider extends BasePluginServiceProvider
             'cape-api' => [
                 'name' => 'cape-Api',
                 'type' => 'dropdown',
-                'icon' => 'bi bi-images',
+                'icon' => 'bi bi-file-image',
                 'route' => 'cape-api.admin.*',
                 'items' => [
                     'cape-api.admin.home' => trans('admin.nav.settings.settings'),
@@ -107,6 +107,7 @@ class CapeApiServiceProvider extends BasePluginServiceProvider
     {
         return [
             'cape' => [
+                'icon' => 'bi bi-file-image',
                 'route' => 'cape-api.home',
                 'name' => trans('cape-api::messages.title'),
             ],
