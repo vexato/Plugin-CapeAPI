@@ -1,5 +1,5 @@
 <?php
-
+use Azuriom\Plugin\CapeApi\Controllers\CapeApiHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    Route::get('/', 'SkinApiController@index')->name('home');
-
-    Route::post('/update', 'SkinApiController@update')->name('update');
+    Route::get('/', [CapeApiHomeController::class, 'index'])->name('home');
+    Route::post('/updateCape', [CapeApiHomeController::class, 'updateCape'])->name('updateCape');
 });

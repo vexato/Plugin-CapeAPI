@@ -1,15 +1,8 @@
 <?php
 
 return [
-    'title' => 'Skin API configuration',
-
-    'fields' => [
-        'width' => 'Width',
-        'height' => 'Height',
-        'scale' => 'Max scale',
-    ],
-
+    'title' => 'Cape API configuration',
     'permissions' => [
-        'manage' => 'Manage skin-api plugin',
+        'manage' => 'Manage cape-api plugin',
     ],
 ];

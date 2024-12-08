@@ -1,77 +1,57 @@
 <?php
 
-namespace Azuriom\Plugin\SkinApi\Controllers\Api;
+namespace Azuriom\Plugin\CapeApi\Controllers\Api;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Models\User;
-use Azuriom\Plugin\SkinApi\SkinAPI;
-use Illuminate\Http\Request;
+use Azuriom\Plugin\CapeApi\CapeAPI;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Azuriom\Models\User;
 
 class ApiController extends Controller
 {
     /**
-     * Show the home plugin page.
-     *
-     * @param  string $user
-     * @return \Illuminate\Http\Response
+     * Show the plugin API default page.
      */
-    public function show(string $user)
+
+    public function showCapes(string $user)
     {
-        if (Str::endsWith($user, '.png')) {
-            $user = Str::beforeLast($user, '.png');
+        if (Str::endsWith($user, '.png') || Str::endsWith($user, '.gif')) {
+            $user = Str::beforeLast($user, '.');
         }
 
         $userId = User::where('id', $user)->orWhere('name', $user)->value('id');
 
-        if ($userId === null || ! Storage::disk('public')->exists("skins/{$userId}.png")) {
-            return response()->file(base_path().'/plugins/skin-api/assets/img/steve.png', [
+        if ($userId === null) {
+            return response()->file(base_path().'/plugins/cape-api/assets/img/cape.png', [
                 'Content-Type' => 'image/png',
             ]);
         }
 
-        return Storage::disk('public')->response("skins/{$userId}.png", 'skin.png', [
-            'Content-Type' => 'image/png',
-        ]);
-    }
+        $capePathPng = "capes/{$userId}.png";
+        $capePathGif = "capes/{$userId}.gif";
 
-    public function avatar(string $type, string $user)
-    {
-        if (Str::endsWith($user, '.png')) {
-            $user = Str::beforeLast($user, '.png');
-        }
-
-        abort_unless(
-            in_array($type, ['combo', 'face'], true),
-            422,
-            "URL should be '/api/skin-api/avatars/face/{$user}.png' or '/api/skin-api/avatars/combo/{$user}.png'"
-        );
-
-        $userId = User::where('id', $user)->orWhere('name', $user)->value('id');
-
-        if ($userId === null || ! Storage::disk('public')->exists("skins/{$userId}.png")) {
-            return response()->file(base_path()."/plugins/skin-api/assets/img/{$type}_steve.png", [
+        if (Storage::disk('public')->exists($capePathPng)) {
+            return Storage::disk('public')->response($capePathPng, 'cape.png', [
+                'Content-Type' => 'image/png',
+            ]);
+        } elseif (Storage::disk('public')->exists($capePathGif)) {
+            return Storage::disk('public')->response($capePathGif, 'cape.gif', [
+                'Content-Type' => 'image/gif',
+            ]);
+        } else {
+            return response()->file(base_path().'/plugins/cape-api/assets/img/cape.png', [
                 'Content-Type' => 'image/png',
             ]);
         }
-
-        // if the avatar does not exist or the skin is more recent than the avatar
-        if (! Storage::disk('public')->exists("{$type}/{$userId}.png")
-            || Storage::disk('public')->lastModified("skins/{$userId}.png") > Storage::disk('public')->lastModified("{$type}/{$userId}.png")) {
-            SkinAPI::makeAvatarWithTypeForUser($type, $userId);
-        }
-
-        return Storage::disk('public')->response("{$type}/{$userId}.png", "{$type}.png", [
-            'Content-Type' => 'image/png',
-        ]);
     }
 
-    public function update(Request $request)
+    public function updateCape(Request $request)
     {
         $this->validate($request, [
             'access_token' => 'required|string',
-            'skin' => ['required', 'mimes:png', SkinAPI::getRule()],
+            'cape' => ['required', 'mimes:png,gif', CapeAPI::getCapeRule()],
         ]);
 
         $user = User::firstWhere('access_token', $request->input('access_token'));
@@ -84,6 +64,19 @@ class ApiController extends Controller
             return response()->json(['status' => false, 'message' => 'User banned'], 422);
         }
 
-        return $request->file('skin')->storeAs('skins', "{$user->id}.png", 'public');
+        // Delete existing capes
+        $capePathPng = "capes/{$user->id}.png";
+        $capePathGif = "capes/{$user->id}.gif";
+
+        if (Storage::disk('public')->exists($capePathPng)) {
+            Storage::disk('public')->delete($capePathPng);
+        }
+
+        if (Storage::disk('public')->exists($capePathGif)) {
+            Storage::disk('public')->delete($capePathGif);
+        }
+
+        // Store the new cape
+        return $request->file('cape')->storeAs('capes', "{$user->id}.{$request->file('cape')->extension()}", 'public');
     }
 }

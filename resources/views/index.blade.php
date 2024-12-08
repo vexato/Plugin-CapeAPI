@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', trans('skin-api::messages.title'))
+@section('title', trans('cape-api::messages.title'))
 
 @push('styles')
     <style>
-        #skinPreview {
+        #capePreview {
             width: 350px;
             image-rendering: crisp-edges; /* Firefox */
             image-rendering: pixelated; /* Chrome and Safari */
@@ -14,54 +14,55 @@
 
 @push('footer-scripts')
     <script>
-        const skinInput = document.getElementById('skin');
 
-        skinInput.addEventListener('change', function () {
-            if (!skinInput.files || !skinInput.files[0]) {
+        const capeInput = document.getElementById('cape');
+
+        function handleFileChange(input, previewId) {
+            if (!input.files || !input.files[0]) {
                 return;
             }
 
-            const file = skinInput.files[0];
+            const file = input.files[0];
 
             if (file.name !== undefined && file.name !== '') {
-                document.getElementById('skinLabel').innerText = file.name;
+                document.getElementById(input.id + 'Label').innerText = file.name;
             }
 
             const reader = new FileReader();
 
             reader.onload = function (e) {
-                const preview = document.getElementById('skinPreview');
+                const preview = document.getElementById(previewId);
                 preview.src = e.currentTarget.result;
                 preview.classList.remove('d-none');
             };
 
-            reader.readAsDataURL(skinInput.files[0]);
+            reader.readAsDataURL(file);
+        }
+
+        capeInput.addEventListener('change', function () {
+            handleFileChange(this, 'capePreview');
         });
     </script>
 @endpush
 
 @section('content')
-    <div class="card shadow mb-4">
+     <div class="card shadow mb-4">
         <div class="card-body">
-            <form action="{{ route('skin-api.update') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('cape-api.updateCape') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                <h2>{{ trans('skin-api::messages.change') }}</h2>
+                <h2>{{ trans('cape-api::messages.changeCape') }}</h2>
 
                 <div class="mb-3">
-                    <label for="skin">{{ trans('skin-api::messages.skin') }}</label>
+                    <label for="cape">{{ trans('cape-api::messages.cape') }}</label>
                     <div class="custom-file">
-                        <input type="file" class="form-control @error('skin') is-invalid @enderror" id="skin" name="skin" accept=".png" required>
-                        <label class="form-label" for="skin" data-browse="{{ trans('messages.actions.browse') }}" id="skinLabel">
-                            {{ trans('messages.actions.choose_file') }}
-                        </label>
-
-                        @error('skin')
-                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                        <input type="file" class="form-control @error('cape') is-invalid @enderror" id="cape" name="cape" accept=".png,.jpg,.jpeg,.gif" required>
+                        <label class="form-label" for="cape" data-browse="{{ trans('messages.actions.browse') }}" id="capeLabel"></label>
+                        @error('cape')
+                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                         @enderror
                     </div>
-
-                     <img src="{{ $skinUrl }}" alt="{{ trans('skin-api::messages.skin') }}" id="skinPreview" class="mt-3 img-fluid">
+                    <img src="{{ $capeUrl }}" alt="{{ trans('cape-api::messages.cape') }}" id="capePreview" class="mt-3 img-fluid">
                 </div>
 
                 <button type="submit" class="btn btn-primary">

@@ -1,16 +1,15 @@
 {
-    "id": "skin-api",
-    "name": "SkinApi",
-    "description": "Add a skin API for your Minecraft server.",
-    "version": "1.0.4",
+    "id": "cape-api",
+    "name": "cape-api",
+    "description": "add a cape api to your website",
+    "version": "1.0.0",
     "url": "https://azuriom.com",
     "authors": [
-        "Javdu10"
+        "Vexato"
     ],
-    "azuriom_api": "1.0.0",
+    "azuriom_api": "1.1.0",
     "providers": [
-        "\\Azuriom\\Plugin\\SkinApi\\Providers\\SkinApiServiceProvider",
-        "\\Azuriom\\Plugin\\SkinApi\\Providers\\RouteServiceProvider"
-    ],
-    "apiId" : 18
+        "\\Azuriom\\Plugin\\CapeApi\\Providers\\CapeApiServiceProvider",
+        "\\Azuriom\\Plugin\\CapeApi\\Providers\\RouteServiceProvider"
+    ]
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Azuriom\Plugin\CapeApi\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,5 @@ use Illuminate\Support\Facades\Route;
 | as prefix. Now create something great!
 |
 */
-
-Route::middleware('can:skin-api.manage')->group(function () {
-    Route::get('/', 'AdminController@index')->name('home');
-    Route::post('/', 'AdminController@update')->name('update');
-});
+Route::get('/', [AdminController::class, 'index'])->name('home');
+Route::post('/', [AdminController::class, 'update'])->name('update');

@@ -1,6 +1,6 @@
 <?php
 
-use Azuriom\Plugin\SkinApi\Controllers\Api\ApiController;
+use Azuriom\Plugin\CapeApi\Controllers\Api\ApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('skins/{user}', [ApiController::class, 'show'])->name('show');
-
-// $type = 'combo' or 'face'
-Route::get('avatars/{type}/{user}', [ApiController::class, 'avatar'])->name('showAvatar');
-
-Route::post('skins/update', [ApiController::class, 'update'])->name('update');
+Route::get('/', [ApiController::class, 'index']);
+Route::get('capes/{user}', [ApiController::class, 'showCapes'])->name('showCapes');
