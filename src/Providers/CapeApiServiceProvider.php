@@ -86,13 +86,13 @@ class CapeApiServiceProvider extends BasePluginServiceProvider
     protected function adminNavigation(): array
     {
         return [
-            'cape-api' => [
+            'capeapi' => [
                 'name' => 'cape-Api',
                 'type' => 'dropdown',
                 'icon' => 'bi bi-file-image',
-                'route' => 'cape-api.admin.*',
+                'route' => 'capeapi.admin.*',
                 'items' => [
-                    'cape-api.admin.home' => trans('admin.nav.settings.settings'),
+                    'capeapi.admin.home' => trans('admin.nav.settings.settings'),
                 ],
             ],
         ];
@@ -108,8 +108,8 @@ class CapeApiServiceProvider extends BasePluginServiceProvider
         return [
             'cape' => [
                 'icon' => 'bi bi-file-image',
-                'route' => 'cape-api.home',
-                'name' => trans('cape-api::messages.title'),
+                'route' => 'capeapi.home',
+                'name' => trans('capeapi::messages.title'),
             ],
         ];
     }

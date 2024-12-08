@@ -11,6 +11,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('cape-api::admin.index');
+        return view('capeapi::admin.index');
     }
 }

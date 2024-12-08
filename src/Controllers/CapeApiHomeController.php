@@ -13,9 +13,9 @@ class CapeApiHomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('cape-api::index', [
+        return view('capeapi::index', [
 
-            'capeUrl' => route('cape-api.api.showCapes', $request->user()->id).'?v='.Str::random(4),
+            'capeUrl' => route('capeapi.api.showCapes', $request->user()->id).'?v='.Str::random(4),
         ]);
     }
 
@@ -38,6 +38,6 @@ class CapeApiHomeController extends Controller
             Storage::disk('public')->delete($capePathGif);
         }
         $request->file('cape')->storeAs('capes', "{$request->user()->id}.{$request->file('cape')->extension()}", 'public');
-        return redirect()->back()->with('success', trans('cape-api::messages.updatedCape'));
+        return redirect()->back()->with('success', trans('capeapi::messages.updatedCape'));
     }
 }

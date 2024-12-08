@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', trans('cape-api::messages.title'))
+@section('title', trans('capeapi::messages.title'))
 
 @push('styles')
     <style>
@@ -63,14 +63,14 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">{{ trans('cape-api::messages.changeCape') }}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">{{ trans('capeapi::messages.changeCape') }}</h6>
         </div>
         <div class="card-body">
-            <form action="{{ route('cape-api.updateCape') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('capeapi.updateCape') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-4">
-                    <label for="cape" class="form-label">{{ trans('cape-api::messages.cape') }}</label>
+                    <label for="cape" class="form-label">{{ trans('capeapi::messages.cape') }}</label>
                     <div class="custom-file">
                         <input
                             type="file"
@@ -95,7 +95,7 @@
                     <div class="col-md-6 text-center">
                         <img
                             src="{{ $capeUrl }}"
-                            alt="{{ trans('cape-api::messages.cape') }}"
+                            alt="{{ trans('capeapi::messages.cape') }}"
                             id="capePreview"
                             class="img-thumbnail mt-3 {{ $capeUrl ? '' : 'd-none' }}"
                             style="max-width: 100%;"

@@ -1,5 +1,5 @@
 {
-    "name": "azuriom/cape-api",
+    "name": "azuriom/capeapi",
     "type": "azuriom-plugin",
     "description": "Plugin for Azuriom",
     "autoload": {

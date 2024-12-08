@@ -24,7 +24,7 @@ class ApiController extends Controller
         $userId = User::where('id', $user)->orWhere('name', $user)->value('id');
 
         if ($userId === null) {
-            return response()->file(base_path().'/plugins/cape-api/assets/img/cape.png', [
+            return response()->file(base_path().'/plugins/capeapi/assets/img/cape.png', [
                 'Content-Type' => 'image/png',
             ]);
         }
@@ -41,7 +41,7 @@ class ApiController extends Controller
                 'Content-Type' => 'image/gif',
             ]);
         } else {
-            return response()->file(base_path().'/plugins/cape-api/assets/img/cape.png', [
+            return response()->file(base_path().'/plugins/capeapi/assets/img/cape.png', [
                 'Content-Type' => 'image/png',
             ]);
         }
